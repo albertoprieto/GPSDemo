@@ -1,7 +1,7 @@
 <template>
     <!-- <MenuTopB></MenuTopB> -->
     <div>
-        <h1>Welcome to the MenuTopB</h1>
+        <h1>Welcome to the MenuTop</h1>
     </div>    
 </template>
 

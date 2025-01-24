@@ -1,14 +1,15 @@
 <template>
   <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-      <h2 style="text-align: center;">Login</h2>
+      <h2 style="text-align: center;">Bienvenido</h2>
       <div style="margin-bottom: 1rem;">
-        <InputText v-model="username" placeholder="Usuario" @keydown.enter="handleSubmit"/>
+        <InputText v-model="username" placeholder="Usuario" @keydown.enter="handleSubmit" />
       </div>
       <div style="margin-bottom: 1rem;">
-        <InputText v-model="password" type="password" placeholder="Contraseña" @keydown.enter="handleSubmit"/>
+        <InputText v-model="password" type="password" placeholder="Contraseña" @keydown.enter="handleSubmit" />
       </div>
-      <Button label="Login" @click="handleSubmit" />
+      <Button label="Entrar" @click="handleSubmit" icon="pi pi-map-marker" />
+      <p class="tooltip">No ingreses datos, solo presiona Entrar.</p>
     </div>
   </div>
 </template>
@@ -38,3 +39,12 @@ const handleSubmit = () => {
   }
 };
 </script>
+
+<style>
+.tooltip {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+  text-align: center;
+}
+</style>

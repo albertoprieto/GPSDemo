@@ -1,99 +1,68 @@
 <template>
-    <div class="informacion">
-        <h1>Bienvenido</h1>
-        <Divider align="left">
-            <span class="section-title">Sobre Nosotros</span>
-        </Divider>
-        <Card class="card-about-us">
-            <template #title>
-                <h2>Quiénes Somos</h2>
-            </template>
-            <template #content>
-                <p>.</p>
-            </template>
-        </Card>
-
-        <Divider align="left">
-            <span class="section-title">Nuestros Productos</span>
-        </Divider>
-        <Card class="card-products">
-            <template #title>
-                <h2>Ir al catálogo</h2>
-            </template>
-            <template #subtitle>
-                <Button label="Adquirir" icon="pi pi-shopping-cart" @click="goToAdquirir" />
-            </template>
-            <template #content>
-                <p>.</p>
-            </template>
-        </Card>
-
-        <Divider align="left">
-            <span class="section-title">Contacto</span>
-        </Divider>
-        <Card class="card-contact">
-            <template #title>
-                <h2>Contáctanos</h2>
-            </template>
-            <template #content>
-                <p>.</p>
-            </template>
-        </Card>
+  <div class="informacion">
+    <h1>Dispositivo</h1>
+    <div class="card-about-us">
+      <div id="map" class="map-container"></div>
     </div>
+  </div>
 </template>
 
-<script setup>
-import { ref, onMounted } from 'vue';
-import Card from 'primevue/card';
-import Divider from 'primevue/divider';
-import {useRouter} from 'vue-router'
-const router = useRouter();
-const someReactiveProperty = ref(null);
+<script>
+import L from 'leaflet';
 
-const goToAdquirir = () => {
-  router.push('/adquirir');
+export default {
+  data() {
+    return {
+      latitud: 20.66682,
+      longitud: -103.39182,
+      map: null,
+      marker: null
+    };
+  },
+  mounted() {
+    this.initMap();
+    this.simulateMovement();
+  },
+  methods: {
+    initMap() {
+      this.map = L.map('map').setView([this.latitud, this.longitud], 13);
+
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      }).addTo(this.map);
+
+      this.marker = L.marker([this.latitud, this.longitud]).addTo(this.map);
+    },
+    simulateMovement() {
+      setInterval(() => {
+        this.latitud += (Math.random() - .7) * 0.001;
+        this.longitud += (Math.random() - .7) * 0.001;
+        this.marker.setLatLng([this.latitud, this.longitud]);
+        this.map.setView([this.latitud, this.longitud]);
+      }, 1000);
+    }
+  }
 };
-onMounted(() => {
-
-    console.log('Componente Información montado');
-});
 </script>
 
-<style scoped>
+<style>
 .informacion {
-    text-align: center;
-    margin: 20px;
+  padding: 20px;
 }
-
 .section-title {
-    font-size: 1.5rem;
-    font-weight: bold;
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
 }
-
+.section-title i {
+  margin-right: 10px;
+}
 .card-about-us {
-    background-color: #f0f8ff;
-    margin-bottom: 20px;
+  margin-top: 20px;
 }
-
-.card-products {
-    background-color: #e6ffe6;
-    margin-bottom: 20px;
-}
-
-.card-contact {
-    background-color: #fff0f5;
-    margin-bottom: 20px;
-}
-
-.card-about-us h2,
-.card-products h2,
-.card-contact h2 {
-    color: #333;
-}
-
-.card-about-us p,
-.card-products p,
-.card-contact p {
-    color: #555;
+.map-container {
+  height: 300px;
+  width: 100%;
+  box-shadow: 0 20px 20px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
 }
 </style>

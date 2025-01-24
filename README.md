@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # GPSDemo
 App para GPS
 

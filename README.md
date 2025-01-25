@@ -1,6 +1,5 @@
 # GPSDemo
-App para GPS
-
+Consulta el proyecto deployado en el siguiente botón.
 [![GitHub Pages](https://img.shields.io/badge/GitHub-Pages-blue?logo=github)](https://albertoprieto.github.io/VueCrud/)
 
 GPSDemo es una aplicación wehttps://github.com/albertoprieto/GPSDemob desarrollada con Vue 3 y Vite. Esta aplicación permite gestionar pagos, envíos, compras y otros servicios. Utiliza PrimeVue para los componentes de la interfaz de usuario y Pinia para la gestión del estado.
